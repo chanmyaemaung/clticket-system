@@ -25,15 +25,16 @@ class Ticket extends Model
 
 
     const PRIORITY = [
-        'low' => 'Low',
-        'medium' => 'Medium',
-        'high' => 'High',
+        'Low' => 'Low',
+        'Medium' => 'Medium',
+        'High' => 'High',
     ];
 
     const STATUS = [
-        'open' => 'Open',
-        'closed' => 'Closed',
-        'in_progress' => 'Archived',
+        'Open' => 'Open',
+        'Closed' => 'Closed',
+        'In Progress' => 'In Progress',
+        'Resolved' => 'Resolved',
     ];
 
     public function assignedTo(): BelongsTo

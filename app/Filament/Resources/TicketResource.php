@@ -62,7 +62,7 @@ class TicketResource extends Resource
             ->columns([
                 TextColumn::make('title')
                     ->label(__('Title'))
-                    ->description(fn (Ticket $record): string => $record->description)
+                    ->description(fn(Ticket $record): string => $record->description)
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('status')
@@ -95,7 +95,7 @@ class TicketResource extends Resource
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                    Tables\Actions\DeleteBulkAction::make()->hidden(!auth()->user()->hasPermission('permission_delete')),
                 ]),
             ]);
     }
