@@ -59,6 +59,7 @@ class CategoryResource extends Resource
                     ->searchable(),
                 ToggleColumn::make('is_active')
                     ->label(__('Status?'))
+                    ->disabled(!auth()->user()->hasPermission('category_edit')),
 
             ])
             ->filters([
