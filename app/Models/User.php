@@ -43,7 +43,21 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function roles() : BelongsToMany {
+    public function roles(): BelongsToMany
+    {
         return $this->belongsToMany(Role::class);
+    }
+
+    public function hasPermission(string $permission): bool
+    {
+        $permissionsArray = [];
+
+        foreach ($this->roles as $role) {
+            foreach ($role->permissions as $singlePermission) {
+                $permissionsArray[] = $singlePermission->name;
+            }
+        }
+
+        return collect($permissionsArray)->unique()->contains($permission);
     }
 }
